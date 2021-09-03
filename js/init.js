@@ -43,5 +43,20 @@ var getJSONData = function(url){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+
+
+
+function getUser(){
+  let nombre=localStorage.getItem("user");
+  if (nombre!=undefined && nombre!=""){
+      document.getElementById("nombreUsuario").innerHTML +=" "+nombre;
+  }
+
+}
+
 document.addEventListener("DOMContentLoaded", function(e){
+  getUser();
+
 });
+
