@@ -7,7 +7,6 @@
 }
 
 .jumbotron {
-  height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
@@ -138,4 +137,19 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.rating {
+  width: 180px;
+}
+
+.rating__star {
+  cursor: pointer;
+  color: #dabd18b2;
 }

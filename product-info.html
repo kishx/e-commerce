@@ -23,9 +23,20 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <a class="py-2 d-none d-md-inline-block" id="nombreUsuario" style="color: white;">Bienvenid@ </a>
     </div>
   </nav>
 
+
+
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Descripción del producto</h2>
+        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
+          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
+      </div>
       <h3 id="productName"></h3>
       <hr class="my-3">
       <dl>
@@ -34,9 +45,24 @@
           <p id="productDescription"></p>
         </dd>
 
-        <dt>Criterio para incluir productos en esta categoría</dt>
+        <dt>Precio</dt>
         <dd>
-          <p id="productCriteria"></p>
+          <p id="productCost"></p>
+        </dd>
+
+        <dt>Currency</dt>
+        <dd>
+          <p id="productCurrency"></p>
+        </dd>
+
+        <dt>Cantidad de vendidos</dt>
+        <dd>
+          <p id="productSoldCount"></p>
+        </dd>
+
+        <dt>Categoría</dt>
+        <dd>
+          <p id="productCategory"></p>
         </dd>
 
         <dt>Imágenes ilustrativas</dt>
@@ -44,9 +70,35 @@
           <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
           </div>
         </dd>
+
+        <h4>Comentarios</h4>
+        <dd>
+          <div id="comentarios"></div>
+        </dd>
+
+        <hr>
+
+        <h5>Danos tu opinión!</h5>
+        <div class="rating">
+
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+          <i class="rating__star far fa-star"></i>
+
+        </div>
+
+
+        <textarea class="form-control mr-3" name="comentario" id="comentarionew"></textarea>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="comentar()">Comenta</button>
+
       </dl>
+      <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
+    </div>
 
 
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -64,6 +116,10 @@
       <div></div>
     </div>
   </div>
+
+
+
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
