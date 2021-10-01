@@ -1,24 +1,12 @@
 var product = {};
 var comentarios = []
 var puntuacion = 0
+var allProducts = []
 
 function showImagesGallery(array) {
 
-    let htmlContentToAppend = "";
+    $('.carousel').carousel()
 
-    for (let i = 0; i < array.length; i++) {
-        let imageSrc = array[i];
-
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
-    }
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -36,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             let productCostHTML = document.getElementById("productCost")
             let productCurrencyHTML = document.getElementById("productCurrency")
 
+
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productSoldCountHTML.innerHTML = product.soldCount;
@@ -43,8 +32,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
             productCostHTML.innerHTML = product.cost
             productCurrencyHTML.innerHTML = product.currency
 
+
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            setProducts()
         }
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
@@ -163,3 +154,43 @@ function dateActual() {
     return dateTime;
 
 }
+
+
+function setProducts(){
+    getJSONData(PRODUCTS_URL)
+    .then(allprod=>{
+        allProducts = allprod.data;
+        related(product.relatedProducts)
+    })
+}
+
+
+function related (array){
+    let htmlContentToAppend = " "
+
+    for(let position of array){
+        htmlContentToAppend += `
+        <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="`+ allProducts[position].imgSrc + `" class="img-thumbnail"> </p>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                        <p> ${allProducts[position].name} </p> 
+                            
+                        
+                        </div>
+                        <p> ${allProducts[position].description} </p> 
+
+                    </div>
+                </div>
+            </div>
+        </a>
+            `
+    }
+
+        
+    document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+}
+
