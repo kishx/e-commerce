@@ -47,7 +47,7 @@ function showCarrito() {
 
             <th scope="row">${i+1}</th>
 
-            <td><img src= ${num[i].src} </td>
+            <td><img src= ${num[i].src} style= "max-width:30%"</td>
 
             <td> ${num[i].name}</td>
             
