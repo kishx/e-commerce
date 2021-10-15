@@ -23,4 +23,9 @@ function validar(){
     alert("Debe completar los campos")
     }
   }
+
+
+  function erase(){
+    localStorage.removeItem(inputUser);
+  }
   

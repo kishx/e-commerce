@@ -15,10 +15,15 @@
   background-position: center;
   background-repeat: no-repeat;
   color: black;
-  font-weight: bold;
+  font-weight: bold; 
+  border-radius:4px;
+  display: block;
+  width:75%;
+  height: initial;
+  position:inherit;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .jumbotron {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -139,10 +144,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
 
 
 .rating {
