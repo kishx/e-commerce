@@ -139,11 +139,6 @@ text-decoration: inherit;
 color: orange;
 }
 
-.img-fluid {
-max-width: 100%;
-height: auto;
-}
-
 
 .rating {
 width: 180px;
