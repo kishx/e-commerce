@@ -25,7 +25,5 @@ function validar(){
   }
 
 
-  function erase(){
-    localStorage.removeItem(inputUser);
-  }
+  
   

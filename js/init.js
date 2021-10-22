@@ -60,3 +60,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 });
 
+function erase(){
+//  localStorage.removeItem(inputUser);
+    localStorage.clear();
+}
+
