@@ -35,8 +35,10 @@ var getJSONData = function (url) {
 
 function update(id) {
   var x = document.getElementById(id).value;
-  document.getElementById("subtotal"+id).innerHTML = x*num[id-1].unitCost;
+  document.getElementById("subtotal"+ id).innerHTML = x*num[id-1].unitCost;
+  sumaTotal()
 }
+
 
 function showCarrito() {
   let html = "";
@@ -61,6 +63,15 @@ function showCarrito() {
 
     document.getElementById("carrito").innerHTML += html;
   }
+  sumaTotal()
 }
 
-
+function sumaTotal(){
+  let total = 0;
+  for (let i = 0; i < num.length; i++){ 
+    let x = document.getElementById(`${i+1}`).value;
+    total += x*num[i].unitCost;
+  }
+  document.getElementById("suma").innerHTML = total;
+  
+}

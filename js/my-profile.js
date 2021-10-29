@@ -1,9 +1,12 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+//mostrar los datos una vez ya guardados en localstorage
+
 document.addEventListener("DOMContentLoaded", function (e) {
     if (localStorage.getItem("info") != null) {
-        var datos = JSON.parse(localStorage.getItem(info))
+        var datos = JSON.parse(localStorage.getItem("info"))
             document.getElementById("Primnom").value = datos.nombre1;
             document.getElementById("Primape").value = datos.apellido1;
             document.getElementById("Segnom").value = datos.nombre2;
@@ -13,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 });
 
+//funcion para subir imagen
 
 var dzoptions = {
     url: "/",
@@ -20,6 +24,7 @@ var dzoptions = {
 };
 var myDropzone = new Dropzone("div#file-upload", dzoptions);
 
+//funcion para guardar en local storage
 
 function guardar() {
     var info = {
