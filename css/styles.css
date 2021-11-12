@@ -192,3 +192,24 @@ color: #dabd18b2;
   height: 50px;
   border-radius: 50%;
 }
+
+.nav-pills .nav-link {
+  color: #555
+}
+
+.nav-pills .nav-link.active {
+  color: white
+}
+
+.fab fa-cc-visa mx-1{
+  font-weight: 900;
+}
+
+
+input[type="radio"] {
+  margin-right: 5px
+}
+
+.bold {
+  font-weight: bold
+}

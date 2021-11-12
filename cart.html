@@ -32,6 +32,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -82,67 +83,197 @@
 
 
 
-        <h4 class="mb-3">Delivery</h4>
+        <h4 class="mb-3">Envio</h4>
         <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="row mt-3">
+          <li class="list-group-item leftd-flex justify-content-between lh-condensed">
+            <div class="row mt-3 left">
 
               <div class="col-md-12"><label class="labels">Calle</label><input type="text" class="form-control"
-                  placeholder="Calle" value="" id="numtel"></div>
+                  placeholder="Calle" value="" id="calle" required></div>
               <div class="col-md-12"><label class="labels">N°</label><input type="text" class="form-control"
-                  placeholder="N° de residencia" value="" id="email"></div>
+                  placeholder="N° de residencia" value="" id="numerores" required></div>
               <div class="col-md-12"><label class="labels">Esquina</label><input type="text" class="form-control"
-                  placeholder="Esquina" value=""></div>
-              <div class="col-md-12"><label class="labels" >Pais</label><input type="text" class="form-control"
-                  placeholder="Pais" value=""></div>
+                  placeholder="Esquina" id="esquina" value="" required></div>
+              <div class="col-md-12"><label class="labels">Pais</label><input type="text" class="form-control"
+                  placeholder="Pais" id="pais" value="" required></div>
             </div>
 
-         
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div class="custom-control custom-radio">
-              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
-                required="">
-              <label class="custom-control-label" for="goldradio">Premium (15%) - 2-5 días</label>
+              <input id="premium" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="premium">Premium (15%) - 2-5 días</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="premiumradio">Express (7%) - 5-8 días</label>
+              <input id="express" name="publicationType" type="radio" class="custom-control-input" >
+              <label class="custom-control-label" for="express">Express (7%) - 5-8 días</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="standardradio">Standard (5%) - 12 a 15 días</label>
+              <input id="standard" name="publicationType" type="radio" class="custom-control-input" >
+              <label class="custom-control-label" for="standard">Standard (5%) - 12 a 15 días</label>
             </div>
-          
+
     </div>
 
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div>
+        <h6 class="my-0">Subtotal</h6>
+        <small class="text-muted">Costo de los productos</small>
+
+      </div>
+      <span class="text-muted"  id="suma"></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div>
+        <h6 class="my-0">P0rcentaje</h6>
+        <small class="text-muted">Según el tipo de envio</small>
+      </div>
+      <span class="text-muted" id="porcentaje">-</span>
+    </li>
     <li class="list-group-item d-flex justify-content-between">
       <span>Total ($) </span>
-      <strong id="suma"></strong>
+      <strong id="costoFinal"></strong>
     </li>
     </ul>
 
-</body>
+    <br>
+
+    <div class="row">
+      <div class="col text-center">
+        <button type="button" onclick="validarPagar()" id="pagarboton" class="btn btn-outline-success"
+          style="display: initial;">Pagar</button>
+      </div>
+    </div>
+
+    <br>
+
+
+    <!-- modal -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Formas de pago</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+
+                <div class="card-block text-center">
+                  <button class="btn btn-primary btn-skew" id="credit" onclick="showCredit()"><i class="fas fa-credit-card mr-2"></i>Tarjeta de
+                    credito</button>
+                  <button class="btn btn-primary btn-skew" id="bank" onclick="showBank()"><i class="fas fa-mobile-alt mr-2"></i>Tranferencia
+                    bancaria</button>
+                </div>
+
+
+                <!-- tarjeta de crdito-->
+
+                <div id="credit-card">
+                  <form role="form">
+                    <div class="form-group"> <label for="username">
+                        <h6>Nombre</h6>
+                      </label> <input type="text" id="username" name="username" placeholder="Nombre Completo" class="form-control "
+                        required> </div>
+                    <div class="form-group"> <label for="cardNumber">
+                        <h6>Número de tarjeta</h6>
+                      </label>
+                      <div class="input-group"> <input type="text" id="cardNumber" name="cardNumber" placeholder="Número"
+                          class="form-control " maxlength="16" required>
+                        <div class="input-group-append"> <span class="input-group-text text-muted"> <i
+                              class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i
+                              class="fab fa-cc-amex mx-1"></i> </span> </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="form-group"> <label><span class="hidden-xs">
+                              <h6>Fecha de vencimiento</h6>
+                            </span></label>
+                          <div class="input-group"> <input type="number" id="month" placeholder="MM" name="month" class="form-control"
+                              min="1" required> <input type="number" id="year" placeholder="YY" name="year" class="form-control"
+                              min="1" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group mb-4"> <label data-toggle="tooltip" id="tip"
+                            title="Los tres digitos que se encuentran el la parte de atras de tu tarjeta.">
+                            <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                          </label> <input type="text" class="form-control" required> </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- transferencia de banco-->
+
+              <div id="net-banking">
+                <div class="form-group" > <label for="Select Your Bank">
+                    <h6>Selecciona tu banco</h6>
+                  </label> <select class="form-control" id="ccmonth">
+                    <option value="" selected disabled>Selecciona tu banco</option>
+                    <option>Banco 1</option>
+                    <option>Banco 2</option>
 
 
 
+                    <div class="input-group"> <input type="text" id="cuentaBank" name="cuentaBank" placeholder="Cuenta bancaria"
+                        class="form-control " maxlength="16" required>
+
+                  </select>
+                </div>
+                <!-- End -->
+              </div>
+
+              <hr>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button class="btn btn-default btn-success" onclick="validarCompra()" type="submit" name="submit" value="Submit">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
 
-</html>
-
-<div id="spinner-wrapper">
-  <div class="lds-ring">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/dropzone.js"></script>
-<script src="js/init.js"></script>
-<script src="js/cart.js"></script>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 
 </html>
